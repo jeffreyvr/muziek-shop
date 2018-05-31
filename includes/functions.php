@@ -126,6 +126,6 @@ function han_get_producten() {
  * @param  [type] $price [description]
  * @return [type]        [description]
  */
-function han_format_price( $price ) {
-  return number_format( $price, 2, ".", "," );
+function han_format_price( $price, $currency = '&euro;' ) {
+  return $currency . ' ' . number_format( $price, 2, ".", "," );
 }
