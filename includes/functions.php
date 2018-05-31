@@ -103,3 +103,29 @@ function han_do_logout() {
   header('location: index.php?page=login');
   exit;
 }
+
+/**
+ * Get producten
+ *
+ * Evt. nog argumenten toevoegen aan functie: limit, offset, order etc.
+ *
+ * @return array
+ */
+function han_get_producten() {
+  global $db;
+
+  $statement = "SELECT * FROM PRODUCT";
+
+  $query = $db->query( $statement );
+
+  return $query->fetchAll();
+}
+
+/**
+ * [han_format_price description]
+ * @param  [type] $price [description]
+ * @return [type]        [description]
+ */
+function han_format_price( $price ) {
+  return number_format( $price, 2, ".", "," );
+}

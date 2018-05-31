@@ -2,9 +2,13 @@
 
 <div class="grid">
 
-  <?php for( $i = 0; $i < 16; $i++ ) { ?>
+  <?php foreach( han_get_producten() as $product ) { ?>
 
-    <div class="product-item">PRODUCT <?php echo $i+1; ?></div>
+    <div class="product-item">
+      <h3><?php echo $product['PRODUCTNAAM']; ?><h3>
+      <img src="<?php echo $product['AFBEELDING_KLEIN']; ?>">
+      <strong><?php echo han_format_price( $product['PRIJS'] ); ?></strong>
+    </div>
 
   <?php } ?>
 
