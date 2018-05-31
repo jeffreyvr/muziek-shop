@@ -9,7 +9,7 @@
       <img src="<?php echo $product['AFBEELDING_KLEIN']; ?>">
       <strong><?php echo han_format_price( $product['PRIJS'] ); ?></strong>
     </div>
-
+<p>Harry</p>
   <?php } ?>
 
 </div>
