@@ -1,0 +1,168 @@
+/**
+ * Reset
+ */
+* { margin: 0; padding: 0; }
+pre { background: #ddd; padding: 15px; margin-bottom: 15px; overflow: scroll; max-width: 100%;}
+
+/**
+ * Body
+ */
+body {
+  margin: 0; padding: 0;
+  font-size: 15px;
+  line-height: 20px;
+  font-family: helvetica, arial, sans-serif;
+}
+
+h1 {
+  margin: 18px 0 10px 0;
+  font-size: 22px;
+}
+
+/**
+ * Container
+ */
+.container {
+  margin: 0 auto; /* gecentreerd */
+  max-width: 960px;
+  padding: 0 10px;
+}
+
+/**
+ * Message
+ */
+.message {
+  display: block;
+  padding: 15px;
+  margin: 15px 0 15px 0;
+  background: #eee;
+  color: #000;
+}
+
+.message strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.message.message-error {
+  background: red;
+  color: #fff;
+}
+
+.message.message-success {
+  background: green;
+  color: #fff;
+}
+
+/**
+ * Header
+ */
+header {
+  background: linear-gradient(-45deg,#3c609e,#01a08c);
+  color: #fff;
+  margin-bottom: 15px;
+  padding: 30px 30px 0px 30px;
+}
+
+header .site-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0 15px 0;
+}
+
+header nav ul {
+  list-style: none;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+header nav ul li {
+  display: inline-block;
+}
+
+header nav ul li a,
+header nav ul li a:visited {
+  color: #fff;
+  text-decoration: none;
+  padding: 4px 8px;
+  opacity: .8;
+}
+
+header nav ul li a:hover {
+  opacity: 1;
+}
+
+/**
+ * Footer
+ */
+footer {
+  margin-top: 15px;
+  background: #EEE;
+  min-height: 150px;
+}
+
+/**
+ * Form
+ */
+.form-group {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.form-group input, .form-group textarea {
+  display: block;
+  padding: 4px 5px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  background: #3c609e;
+  padding: 6px 8px;
+  color: #fff;
+  border: none;
+  font-size: 14px;
+}
+
+/**
+ * Grid
+ */
+.grid {
+  display: grid;
+  margin: auto;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 1em;
+}
+
+.product-item {
+  background: #eee;
+  padding: 15px;
+  min-height: 100px;
+}
+
+/* Responsive */
+@media only screen and (max-width : 768px) {
+  .grid {
+    grid-template-columns: auto auto;
+    grid-gap: 1em;
+  }
+}
+
+@media only screen and (max-width : 480px) {
+  .grid {
+    grid-template-columns: auto;
+    grid-gap: 1em;
+  }
+}
