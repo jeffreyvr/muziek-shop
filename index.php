@@ -5,7 +5,7 @@ include PARTIAL_PATH . 'header.php';
 ?>
 
 <div class="container">
-  
+
   <?php
   // Simple page routing
   $page = (!empty( $_GET['page'] ) ? $_GET['page'] : 'home' );
@@ -20,8 +20,16 @@ include PARTIAL_PATH . 'header.php';
       include PARTIAL_PATH . 'page-login.php';
       break;
 
-    case "test":
-      include PARTIAL_PATH . 'page-test.php';
+    case "product":
+      include PARTIAL_PATH . 'page-product.php';
+      break;
+
+    case "registreren":
+      include PARTIAL_PATH . 'page-registreren.php';
+      break;
+
+    case "winkelwagen":
+      include PARTIAL_PATH . 'page-winkelwagen.php';
       break;
 
     default:

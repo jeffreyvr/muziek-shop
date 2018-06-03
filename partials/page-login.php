@@ -3,14 +3,12 @@
 
   <form method="post">
 
-    <div class="form-group">
-      <label for="gebruikersnaam">Gebruikersnaam</label>
-      <input type="text" name="gebruikersnaam" id="gebruikersnaam">
+    <div class="form-group form-group-inline">
+      <input type="text" placeholder="Gebruikersnaam" name="gebruikersnaam" id="gebruikersnaam">
     </div>
 
-    <div class="form-group">
-      <label for="wachtwoord">Wachtwoord</label>
-      <input type="text" name="wachtwoord" id="wachtwoord">
+    <div class="form-group form-group-inline">
+      <input type="password" placeholder="Wachtwoord" name="wachtwoord" id="wachtwoord">
     </div>
 
     <input type="hidden" name="form_action" value="login">
