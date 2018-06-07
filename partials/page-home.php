@@ -6,7 +6,7 @@
 
     <div class="col product-item">
       <a href="index.php?page=product&amp;productnummer=<?php echo $product['PRODUCTNUMMER']; ?>">
-        <img src="<?php echo $product['AFBEELDING_KLEIN']; ?>">
+        <img src="<?php echo $product['AFBEELDING_KLEIN']; ?>" alt="<?php echo $product['PRODUCTNAAM']; ?>">
       </a>
       <h3><?php echo $product['PRODUCTNAAM']; ?></h3>
       <strong class="price"><?php echo han_format_price( $product['PRIJS'] ); ?></strong>

@@ -1,3 +1,4 @@
+<?php if ( ! han_is_gebruiker_logged_in() ) : ?>
 <form method="post">
 
   <h2>Accountgegevens</h2>
@@ -76,3 +77,6 @@
 
   <button type="submit">Registreer</button>
 </form>
+<?php else : ?>
+  <p>Je bent al ingelogd.</p>
+<?php endif; ?>
