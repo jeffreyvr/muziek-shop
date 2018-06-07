@@ -20,6 +20,10 @@ include PARTIAL_PATH . 'header.php';
       include PARTIAL_PATH . 'page-login.php';
       break;
 
+    case "over-ons":
+      include PARTIAL_PATH . 'page-over-ons.php';
+      break;
+      
     case "product":
       include PARTIAL_PATH . 'page-product.php';
       break;

@@ -59,5 +59,11 @@
 
     <button type="submit">Winkelwagen bijwerken</button>
 
+    <?php if ( han_is_gebruiker_logged_in() ) { ?>
+      <a href="index.php?page=afrekenen" class="button">Afrekenen</a>
+    <?php } else { ?>
+      <a href="index.php?page=registreren" class="button">Registreren</a>
+    <?php } ?>
+
   </form>
 <?php } ?>
