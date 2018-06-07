@@ -12,7 +12,7 @@ define( 'DB_USER', 'root' );
 define( 'DB_PASS', 'root' );
 define( 'DB_CHARSET', 'utf8mb4' );
 
-define( 'SITE_NAME', 'Webshop' );
+define( 'SITE_NAME', 'Muziekshop' );
 define( 'SITE_HOME_URL', 'http://127.0.0.1/han/');
 
 $db = han_db();

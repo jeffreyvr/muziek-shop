@@ -11,7 +11,9 @@
 
   <header>
     <div class="site-header">
-      <div class="site-title">HAN Shop</div>
+      <div class="site-title">
+        <img src="assets/images/logo.png" alt="logo">
+      </div>
       <div class="site-login">
         <?php include PARTIAL_PATH . 'page-login.php'; ?>
       </div>

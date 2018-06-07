@@ -1,5 +1,3 @@
-<?php echo SITE_NAME; ?>
-
 <div class="flex-grid products">
 
   <?php foreach( han_get_producten() as $product ) { ?>

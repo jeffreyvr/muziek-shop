@@ -9,24 +9,34 @@ if ( isset( $_GET['productnummer'] ) ) {
 
 ?>
 
-<h1><?php echo $product['PRODUCTNAAM']; ?></h1>
+<div class="flex-grid">
+  <div class="col">
+    <img src="<?php echo $product['AFBEELDING_GROOT']; ?>">
+  </div>
+  <div class="col">
+    <h1><?php echo $product['PRODUCTNAAM']; ?></h1>
 
-<?php echo $product['PRODUCTOMSCHRIJVING']; ?>
+    <?php echo $product['PRODUCTOMSCHRIJVING']; ?>
 
-<p>
-  <span>Categorie:</span>
-  <?php echo $product['CATEGORIE']; ?>
-</p>
+    <p>
+      <span>Categorie:</span>
+      <?php echo $product['CATEGORIE']; ?>
+    </p>
 
-<p>
-  <span>Prijs:</span>
-  <?php echo han_format_price( $product['PRIJS'] ); ?>
-</p>
+    <p>
+      <span>Voorraad:</span>
+      <?php echo $product['VOORRAAD']; ?>
+    </p>
 
-<img src="<?php echo $product['AFBEELDING_GROOT']; ?>">
+    <p>
+      <span>Prijs:</span>
+      <?php echo han_format_price( $product['PRIJS'] ); ?>
+    </p>
 
-<form method="post">
-  <input type="hidden" name="productnummer" value="<?php echo $product['PRODUCTNUMMER']; ?>">
-  <button type="submit">Toevoegen aan winkelwagen</button>
-  <input type="hidden" name="form_action" value="winkelwagen">
-</form>
+    <form method="post">
+      <input type="hidden" name="productnummer" value="<?php echo $product['PRODUCTNUMMER']; ?>">
+      <button type="submit">Toevoegen aan winkelwagen</button>
+      <input type="hidden" name="form_action" value="winkelwagen">
+    </form>
+  </div>
+</div>

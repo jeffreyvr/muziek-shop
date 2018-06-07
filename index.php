@@ -23,7 +23,7 @@ include PARTIAL_PATH . 'header.php';
     case "over-ons":
       include PARTIAL_PATH . 'page-over-ons.php';
       break;
-      
+
     case "product":
       include PARTIAL_PATH . 'page-product.php';
       break;
@@ -34,6 +34,10 @@ include PARTIAL_PATH . 'header.php';
 
     case "winkelwagen":
       include PARTIAL_PATH . 'page-winkelwagen.php';
+      break;
+
+    case "afrekenen":
+      include PARTIAL_PATH . 'page-afrekenen.php';
       break;
 
     default:
