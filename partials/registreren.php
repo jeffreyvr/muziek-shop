@@ -1,3 +1,5 @@
+<h1>Registreren</h1>
+
 <?php if ( ! han_is_gebruiker_logged_in() ) :
 
   $gebruikersnaam = filter_input( INPUT_POST, 'gebruikersnaam', FILTER_SANITIZE_STRING );
