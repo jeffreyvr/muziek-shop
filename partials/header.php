@@ -16,7 +16,7 @@
         <img src="assets/images/logo.png" alt="logo">
       </div>
       <div class="site-login">
-        <?php include PARTIAL_PATH . 'page-login.php'; ?>
+        <?php include PARTIAL_PATH . 'login.php'; ?>
       </div>
     </div>
 
