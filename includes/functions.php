@@ -241,5 +241,15 @@ function han_do_registreren() {
     $query->bindParam(':wachtwoord', $_POST['wachtwoord']);
 
     $query->execute();
+
+    if ( isset( $_POST['redirect_to'] ) ){
+
+      if( ! empty( $_POST['redirect_to'] ) ) {
+        header("location: " . $_POST['redirect_to'] );
+      } else {
+        header("location: index.php");
+      }
+      exit;
+    }
   }
 }

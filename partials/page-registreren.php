@@ -12,6 +12,7 @@
   $huisnummer = filter_input( INPUT_POST, 'huisnummer', FILTER_SANITIZE_NUMBER_INT );
   $woonplaats = filter_input( INPUT_POST, 'woonplaats', FILTER_SANITIZE_STRING );
   $telefoon = filter_input( INPUT_POST, 'telefoon', FILTER_SANITIZE_STRING );
+  $redirect_to = filter_input ( INPUT_GET, 'redirect_to', FILTER_SANITIZE_URL );
   ?>
 <form method="post">
 
@@ -92,6 +93,8 @@
   </div>
 
   <div style="clear: both;"></div>
+
+  <input type="hidden" name="redirect_to" value="<?php echo $redirect_to; ?>">
 
   <button type="submit">Registreer</button>
 </form>

@@ -62,7 +62,7 @@
     <?php if ( han_is_gebruiker_logged_in() ) { ?>
       <a href="index.php?page=afrekenen" class="button">Afrekenen</a>
     <?php } else { ?>
-      <a href="index.php?page=registreren" class="button">Inloggen / Registreren</a>
+      <a href="index.php?page=registreren&amp;redirect_to=index.php?page=winkelwagen" class="button">Inloggen / Registreren</a>
     <?php } ?>
 
   </form>
