@@ -30,7 +30,7 @@
       $product = han_get_product_by_productnummer( $productnummer ); ?>
 
       <tr>
-        <td><img src="<?php echo $product['AFBEELDING_GROOT']; ?>"></td>
+        <td><img src="<?php echo $product['AFBEELDING_GROOT']; ?>" alt="Afbeelding <?php echo $product['PRODUCTNAAM']; ?>"></td>
         <td>
           <a href="index.php?page=product&amp;productnummer=<?php echo $product['PRODUCTNUMMER']; ?>">
             <?php echo $product['PRODUCTNAAM']; ?>
@@ -47,10 +47,8 @@
     <?php } ?>
 
       <tr>
-        <td colspan="5" align="right">
-          <strong>Eindtotaal:</stong>
-        </td>
-        <td align="left">
+        <td class="total" colspan="6">
+          <strong>Eindtotaal:</strong>
           <?php echo han_format_price( han_get_winkelwagen_totaal() ); ?>
         </td>
       </tr>
@@ -62,7 +60,7 @@
     <?php if ( han_is_gebruiker_logged_in() ) { ?>
       <a href="index.php?page=afrekenen" class="button">Afrekenen</a>
     <?php } else { ?>
-      <a href="index.php?page=registreren&amp;redirect_to=index.php?page=winkelwagen" class="button">Inloggen / Registreren</a>
+      <a href="index.php?page=registreren&amp;redirect_to=index.php?page=winkelwagen" class="button">Registreren</a>
     <?php } ?>
 
   </form>

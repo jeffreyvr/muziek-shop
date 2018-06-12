@@ -245,7 +245,7 @@ function han_do_registreren() {
     if ( isset( $_POST['redirect_to'] ) ){
 
       if( ! empty( $_POST['redirect_to'] ) ) {
-        header("location: " . $_POST['redirect_to'] );
+        header("location: " . filter_input( INPUT_POST, 'redirect_to', FILTER_SANITIZE_STRING ) );
       } else {
         header("location: index.php");
       }

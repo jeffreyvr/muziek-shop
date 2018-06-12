@@ -4,11 +4,11 @@
   <form method="post">
 
     <div class="form-group form-group-inline">
-      <input type="text" placeholder="Gebruikersnaam" name="gebruikersnaam" id="gebruikersnaam">
+      <input type="text" placeholder="Gebruikersnaam" name="gebruikersnaam">
     </div>
 
     <div class="form-group form-group-inline">
-      <input type="password" placeholder="Wachtwoord" name="wachtwoord" id="wachtwoord">
+      <input type="password" placeholder="Wachtwoord" name="wachtwoord">
     </div>
 
     <input type="hidden" name="form_action" value="login">

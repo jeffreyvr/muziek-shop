@@ -9,6 +9,7 @@
 
 <body>
 
+  <!-- Start header -->
   <header>
     <div class="site-header">
       <div class="site-title">
@@ -35,5 +36,7 @@
     </nav>
 
   </header>
+  <!-- Eind header -->
 
+  <!-- Start Main -->
   <main>

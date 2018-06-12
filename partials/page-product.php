@@ -11,7 +11,7 @@ if ( isset( $_GET['productnummer'] ) ) {
 
 <div class="flex-grid">
   <div class="col">
-    <img src="<?php echo $product['AFBEELDING_GROOT']; ?>">
+    <img src="<?php echo $product['AFBEELDING_GROOT']; ?>" alt="Afbeelding <?php echo $product['PRODUCTNAAM']; ?>">
   </div>
   <div class="col">
     <h1><?php echo $product['PRODUCTNAAM']; ?></h1>
