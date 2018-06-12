@@ -13,7 +13,7 @@ include PARTIAL_PATH . 'header.php';
   switch ( $page ) {
 
     case "home":
-      include PARTIAL_PATH . 'page-home.php';
+      include PARTIAL_PATH . 'page-producten.php';
       break;
 
     case "login":

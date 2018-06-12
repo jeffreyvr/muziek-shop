@@ -9,14 +9,16 @@ if ( isset( $_GET['productnummer'] ) ) {
 
 ?>
 
-<div class="flex-grid">
+<article class="flex-grid">
   <div class="col">
     <img src="<?php echo $product['AFBEELDING_GROOT']; ?>" alt="Afbeelding <?php echo $product['PRODUCTNAAM']; ?>">
   </div>
   <div class="col">
     <h1><?php echo $product['PRODUCTNAAM']; ?></h1>
 
-    <?php echo $product['PRODUCTOMSCHRIJVING']; ?>
+    <?php if ( !empty( $product['OMSCHRIJVING'] ) ) { ?>
+      <p><?php echo $product['OMSCHRIJVING']; ?></p>
+    <?php } ?>
 
     <p>
       <span>Categorie:</span>
@@ -39,4 +41,4 @@ if ( isset( $_GET['productnummer'] ) ) {
       <input type="hidden" name="form_action" value="winkelwagen">
     </form>
   </div>
-</div>
+</article>

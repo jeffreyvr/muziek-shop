@@ -261,17 +261,22 @@ button:hover, .button:hover {
 /**
  * Article
  */
-article img {
+article {
+  line-height: 24px;
+}
+
+article .alignright, article .alignleft {
   max-width: 300px;
 }
 
 article .alignright {
   float: right;
-  margin: 0 0 15px 15px;
+  margin: 0 0 15px 15px;  
 }
 
 article .alignleft {
   float: left;
+  margin: 0 15px 0 15px;
 }
 
 article p {
