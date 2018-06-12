@@ -13,35 +13,35 @@ include PARTIAL_PATH . 'header.php';
   switch ( $page ) {
 
     case "home":
-      include PARTIAL_PATH . 'page-producten.php';
+      include PARTIAL_PATH . 'producten.php';
       break;
 
     case "login":
-      include PARTIAL_PATH . 'page-login.php';
+      include PARTIAL_PATH . 'login.php';
       break;
 
     case "over-ons":
-      include PARTIAL_PATH . 'page-over-ons.php';
+      include PARTIAL_PATH . 'over-ons.php';
       break;
 
     case "product":
-      include PARTIAL_PATH . 'page-product.php';
+      include PARTIAL_PATH . 'product.php';
       break;
 
     case "registreren":
-      include PARTIAL_PATH . 'page-registreren.php';
+      include PARTIAL_PATH . 'registreren.php';
       break;
 
     case "winkelwagen":
-      include PARTIAL_PATH . 'page-winkelwagen.php';
+      include PARTIAL_PATH . 'winkelwagen.php';
       break;
 
     case "afrekenen":
-      include PARTIAL_PATH . 'page-afrekenen.php';
+      include PARTIAL_PATH . 'afrekenen.php';
       break;
 
     default:
-      include PARTIAL_PATH . 'page-404.php';
+      include PARTIAL_PATH . '404.php';
 
   }
   ?>
