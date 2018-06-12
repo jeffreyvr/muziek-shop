@@ -10,6 +10,16 @@
 
 <?php } else { ?>
 
+  <?php if ( isset( $_GET['message'] ) ) { ?>
+
+    <?php if ( $_GET['message'] == 1 ) { ?>
+      <div class="message message-success">
+        <p>Product is succesvol toegevoegd. <a href="index.php">Verder winkelen &raquo;</a></p>
+      </div>
+    <?php } ?>
+
+  <?php } ?>
+
   <form method="post">
 
     <button type="submit">Winkelwagen bijwerken</button>

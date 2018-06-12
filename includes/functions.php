@@ -102,7 +102,7 @@ function han_do_winkelwagen() {
     $_SESSION['winkelwagen'][$_POST['productnummer']]['aantal'] = 1;
   }
 
-  header("location: index.php?page=winkelwagen");
+  header("location: index.php?page=winkelwagen&message=1");
   exit;
 }
 

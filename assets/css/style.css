@@ -59,7 +59,12 @@ h1 {
 }
 
 .message.message-success {
-  background: green;
+  background: #048b7b;
+  color: #fff;
+}
+
+.message.message-success a,
+.message.message-error a {
   color: #fff;
 }
 
