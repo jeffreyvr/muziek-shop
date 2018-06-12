@@ -169,6 +169,11 @@ input, textarea {
   font-size: 14px;
 }
 
+.error {
+  border-color: red;
+  background: #fff2f2;
+}
+
 input[type="number"] {
   max-width: 40px;
 }

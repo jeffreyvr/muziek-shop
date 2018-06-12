@@ -216,22 +216,30 @@ function han_get_product_by_productnummer( $productnummer ) {
  * Registreren
  */
 function han_do_registreren() {
-  global $db;
+  global $db, $error;
 
-  $query = $db->prepare("INSERT INTO GEBRUIKER (GEBRUIKERSNAAM, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM, STRAATNAAM, HUISNUMMER, POSTCODE, WOONPLAATS, EMAIL, SEXE, WACHTWOORD) VALUES
-  (:gebruikersnaam, :voornaam, :tussenvoegsel, :achternaam, :straatnaam, :huisnummer, :postcode, :woonplaats, :email, :sexe, :wachtwoord)");
+  foreach ( $_POST as $post => $value ) {
+    if ( empty( $value ) && $post !== 'tussenvoegsel' ) {
+      $error[$post] = 'leeg';
+    }
+  }
 
-  $query->bindParam(':gebruikersnaam', $_POST['gebruikersnaam']);
-  $query->bindParam(':voornaam', $_POST['voornaam']);
-  $query->bindParam(':tussenvoegsel', $_POST['tussenvoegsel']);
-  $query->bindParam(':achternaam', $_POST['achternaam']);
-  $query->bindParam(':straatnaam', $_POST['straatnaam']);
-  $query->bindParam(':huisnummer', $_POST['huisnummer']);
-  $query->bindParam(':postcode', $_POST['postcode']);
-  $query->bindParam(':woonplaats', $_POST['woonplaats']);
-  $query->bindParam(':email', $_POST['email']);
-  $query->bindParam(':sexe', $_POST['aanhef']);
-  $query->bindParam(':wachtwoord', $_POST['wachtwoord']);
+  if ( empty( $error ) ) {
+    $query = $db->prepare("INSERT INTO GEBRUIKER (GEBRUIKERSNAAM, VOORNAAM, TUSSENVOEGSEL, ACHTERNAAM, STRAATNAAM, HUISNUMMER, POSTCODE, WOONPLAATS, EMAIL, SEXE, WACHTWOORD) VALUES
+    (:gebruikersnaam, :voornaam, :tussenvoegsel, :achternaam, :straatnaam, :huisnummer, :postcode, :woonplaats, :email, :sexe, :wachtwoord)");
 
-  $query->execute();
+    $query->bindParam(':gebruikersnaam', $_POST['gebruikersnaam']);
+    $query->bindParam(':voornaam', $_POST['voornaam']);
+    $query->bindParam(':tussenvoegsel', $_POST['tussenvoegsel']);
+    $query->bindParam(':achternaam', $_POST['achternaam']);
+    $query->bindParam(':straatnaam', $_POST['straatnaam']);
+    $query->bindParam(':huisnummer', $_POST['huisnummer']);
+    $query->bindParam(':postcode', $_POST['postcode']);
+    $query->bindParam(':woonplaats', $_POST['woonplaats']);
+    $query->bindParam(':email', $_POST['email']);
+    $query->bindParam(':sexe', $_POST['aanhef']);
+    $query->bindParam(':wachtwoord', $_POST['wachtwoord']);
+
+    $query->execute();
+  }
 }

@@ -16,5 +16,6 @@ define( 'SITE_NAME', 'Muziekshop' );
 define( 'SITE_HOME_URL', 'http://127.0.0.1/han/');
 
 $db = han_db();
+$error = array();
 
 han_formhandeler();

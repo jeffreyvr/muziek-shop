@@ -16,6 +16,8 @@
     <button type="submit">Log in</button>
   </form>
 
+  <a href="index.php?page=registreren">Registreren</a>
+
 <?php else : ?>
 
   <p>Je bent ingelogd als <?php echo $_SESSION['gebruikersnaam']; ?></p>
