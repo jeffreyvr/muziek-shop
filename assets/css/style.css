@@ -145,6 +145,10 @@ footer {
   margin-top: 15px;
   background: #EEE;
   min-height: 150px;
+  padding-top: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #666;
 }
 
 /**
@@ -222,6 +226,7 @@ button:hover, .button:hover {
   box-shadow: 0 10px 15px rgba(0,0,0,.1);
   padding: 30px;
   text-align: center;
+  position: relative;
 }
 
 .product-item img {
@@ -235,6 +240,14 @@ button:hover, .button:hover {
 
 .product-item:hover {
   box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+
+.product-item a {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
 }
 
 /**
@@ -271,7 +284,7 @@ article .alignright, article .alignleft {
 
 article .alignright {
   float: right;
-  margin: 0 0 15px 15px;  
+  margin: 0 0 15px 15px;
 }
 
 article .alignleft {
