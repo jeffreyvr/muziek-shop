@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title><?php echo ( !empty( $title ) ? $title : null ); ?></title>
+  <title><?php echo ( !empty( $title ) ? $title . ' - ' : null ) . $config['site']['name']; ?></title>
   <link href="assets/css/style.css" rel="stylesheet" media="screen">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
