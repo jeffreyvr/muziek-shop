@@ -1,19 +1,25 @@
+<?php
+  $arguments = [];
+
+  if ( !empty( $_GET['category'] ) ) {
+    $arguments['category'] = $_GET['category'];
+  }
+
+  if ( han_get_search_query() ) {
+    $arguments['search'] = han_get_search_query();
+  }
+
+  $producten = han_get_producten( $arguments );
+?>
+
+<?php if ( han_get_search_query() ) { ?>
+  <h1>Zoekresultaten voor "<?php echo han_get_search_query(); ?>"</h1>
+<?php } elseif ( han_get_category_query() ) { ?>
+  <h1>Categorie: <?php echo han_get_category_query(); ?></h1>
+<?php } ?>
+
 <!-- Start Producten -->
 <div class="flex-grid products">
-
-  <?php
-    $arguments = [];
-
-    if ( !empty( $_GET['category'] ) ) {
-      $arguments['category'] = $_GET['category'];
-    }
-
-    if ( !empty( $_GET['search'] ) ) {
-      $arguments['search'] = $_GET['search'];
-    }
-
-    $producten = han_get_producten( $arguments );
-  ?>
 
   <?php if ( !empty( $producten ) ) { ?>
 
@@ -31,7 +37,7 @@
     <?php } ?>
 
   <?php } else { ?>
-    
+
     <p>Geen producten gevonden.</p>
 
   <?php } ?>

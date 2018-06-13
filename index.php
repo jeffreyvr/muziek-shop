@@ -1,4 +1,7 @@
 <?php
+include 'tijdelijk/simple_html_dom.php';
+
+
 require_once( 'includes/setup.php' );
 
 // Simple page routing
@@ -19,6 +22,11 @@ switch ( $page ) {
   case "over-ons":
     $template = 'over-ons';
     $title = 'Over ons';
+    break;
+
+  case "categorie-overzicht":
+    $template = 'categorie-overzicht';
+    $title = 'Categorie-overzicht';
     break;
 
   case "product":

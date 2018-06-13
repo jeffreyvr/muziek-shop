@@ -21,18 +21,26 @@
     </div>
 
     <nav>
-      <ul>
-        <li>
-          <a href="index.php">Webshop</a>
-          <ul>
-            <li><a href="index.php?page=winkelwagen">Winkelwagen</a></li>
-          </ul>
-        </li>
-        <li><a href="index.php?page=nieuws">Nieuws</a></li>
-        <li><a href="index.php?page=acties">Acties</a></li>
-        <li><a href="index.php?page=over-ons">Over ons</a></li>
-        <li><a href="index.php?page=vacatures">Vacatures</a></li>
-      </ul>
+      <div class="container">
+        <ul>
+          <li>
+            <a href="index.php">Webshop</a>
+            <ul>
+              <li><a href="index.php?page=winkelwagen">Winkelwagen</a></li>
+              <li><a href="index.php?page=categorie-overzicht">Categorie-overzicht</a></li>
+            </ul>
+          </li>
+          <li><a href="index.php?page=nieuws">Nieuws</a></li>
+          <li><a href="index.php?page=acties">Acties</a></li>
+          <li><a href="index.php?page=over-ons">Over ons</a></li>
+          <li><a href="index.php?page=vacatures">Vacatures</a></li>
+        </ul>
+
+        <form method="get" class="search-form">
+          <input type="text" style="display: inline-block;" name="search" value="<?php echo han_get_search_query(); ?>" placeholder="Zoeken naar product...">
+          <button type="submit">Zoek</button>
+        </form>
+      </div>
     </nav>
 
   </header>

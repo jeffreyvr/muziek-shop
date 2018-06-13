@@ -42,7 +42,7 @@
     <!-- Start Product <?php echo $related_product['PRODUCTNUMMER']; ?> -->
     <article class="col product-item">
       <a href="index.php?page=product&amp;productnummer=<?php echo $related_product['PRODUCTNUMMER']; ?>"></a>
-      <img src="<?php echo $product['AFBEELDING_KLEIN']; ?>" alt="<?php echo $related_product['PRODUCTNAAM']; ?>">
+      <img src="<?php echo $related_product['AFBEELDING_KLEIN']; ?>" alt="<?php echo $related_product['PRODUCTNAAM']; ?>">
       <h3><?php echo $related_product['PRODUCTNAAM']; ?></h3>
       <strong class="price"><?php echo han_format_price( $related_product['PRIJS'] ); ?></strong>
     </article>

@@ -329,3 +329,21 @@ function han_get_categories() {
 
    return $query->fetchAll();
  }
+
+/**
+ * Get search query
+ *
+ * @return string|null
+ */
+ function han_get_search_query() {
+   return filter_input( INPUT_GET, 'search', FILTER_SANITIZE_STRING );
+ }
+
+/**
+ * Get category query
+ *
+ * @return string|null
+ */
+function han_get_category_query() {
+  return filter_input( INPUT_GET, 'category', FILTER_SANITIZE_STRING );
+}
