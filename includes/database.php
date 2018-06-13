@@ -6,9 +6,11 @@
  * Function is used in setup.php to set a global db-connection.
  */
 function han_db() {
-  $host = DB_HOST;
-  $name = DB_NAME;
-  $charset = DB_CHARSET;
+  global $config;
+
+  $host = $config['db']['host'];
+  $name = $config['db']['name'];
+  $charset = $config['db']['charset'];
 
   $dsn = "mysql:host=$host;dbname=$name;charset=$charset";
 
@@ -19,7 +21,7 @@ function han_db() {
   ];
 
   try {
-    return new PDO( $dsn, DB_USER, DB_PASS, $opt );
+    return new PDO( $dsn, $config['db']['user'], $config['db']['password'], $opt );
   } catch(PDOException $ex){
     han_error_screen( $ex, 'Error bij maken databaseverbinding' );
   }

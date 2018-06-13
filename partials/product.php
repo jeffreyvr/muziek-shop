@@ -1,14 +1,3 @@
-<?php
-
-if ( isset( $_GET['productnummer'] ) ) {
-  $product = han_get_product_by_productnummer( $_GET['productnummer'] );
-} else {
-  header("location: index.php?page=404");
-  exit;
-}
-
-?>
-
 <article class="flex-grid">
   <div class="col">
     <img src="<?php echo $product['AFBEELDING_GROOT']; ?>" alt="Afbeelding <?php echo $product['PRODUCTNAAM']; ?>">

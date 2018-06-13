@@ -1,51 +1,68 @@
 <?php
 require_once( 'includes/setup.php' );
 
-include PARTIAL_PATH . 'header.php';
+// Simple page routing
+$page = (!empty( $_GET['page'] ) ? $_GET['page'] : 'home' );
+
+switch ( $page ) {
+
+  case "home":
+    $template = 'producten';
+    $title = 'Producten';
+    break;
+
+  case "login":
+    $template = 'login';
+    $title = 'Inloggen';
+    break;
+
+  case "over-ons":
+    $template = 'over-ons';
+    $title = 'Over ons';
+    break;
+
+  case "product":
+    if ( ! empty( $_GET['productnummer'] ) ) {
+      $template = 'product';
+      $product = han_get_product_by_productnummer( $_GET['productnummer'] );
+    }
+
+    if ( empty( $product ) ) {
+      header("location: index.php?page=404");
+    } else {
+      $title = $product['PRODUCTNAAM'];
+    }
+
+    break;
+
+  case "registreren":
+    $template = 'registreren';
+    $title = 'Registreren';
+    break;
+
+  case "winkelwagen":
+    $template = 'winkelwagen';
+    $title = 'Winkelwagen';
+    break;
+
+  case "afrekenen":
+    $template = 'afrekenen';
+    $title = 'Afrekenen';
+    break;
+
+  default:
+    $template = '404';
+    $title = 'Pagina niet gevonden';
+
+}
+
+include $config['paths']['partial'] . 'header.php';
 ?>
 
 <div class="container">
 
-  <?php
-  // Simple page routing
-  $page = (!empty( $_GET['page'] ) ? $_GET['page'] : 'home' );
-
-  switch ( $page ) {
-
-    case "home":
-      include PARTIAL_PATH . 'producten.php';
-      break;
-
-    case "login":
-      include PARTIAL_PATH . 'login.php';
-      break;
-
-    case "over-ons":
-      include PARTIAL_PATH . 'over-ons.php';
-      break;
-
-    case "product":
-      include PARTIAL_PATH . 'product.php';
-      break;
-
-    case "registreren":
-      include PARTIAL_PATH . 'registreren.php';
-      break;
-
-    case "winkelwagen":
-      include PARTIAL_PATH . 'winkelwagen.php';
-      break;
-
-    case "afrekenen":
-      include PARTIAL_PATH . 'afrekenen.php';
-      break;
-
-    default:
-      include PARTIAL_PATH . '404.php';
-
-  }
-  ?>
+  <?php include $config['paths']['partial'] . $template . '.php'; ?>
 
 </div>
 
-<?php include PARTIAL_PATH . 'footer.php'; ?>
+<?php include $config['paths']['partial'] . 'footer.php'; ?>

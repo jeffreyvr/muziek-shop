@@ -8,7 +8,9 @@
  * @param  string $title
  */
 function han_error_screen( $message, $title = '' ) {
-  include PARTIAL_PATH . 'header.php';
+  global $config;
+
+  include $config['paths']['partial'] . 'header.php';
 
   echo '<div class="container">';
     echo '<div class="message message-error">';
@@ -17,7 +19,7 @@ function han_error_screen( $message, $title = '' ) {
     echo '</div>';
   echo '</div>';
 
-  include PARTIAL_PATH . 'footer.php';
+  include $config['paths']['partial'] . 'footer.php';
 
   die(); // error dus stoppen met alles
 }

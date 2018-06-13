@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Webshop</title>
+  <title><?php echo ( !empty( $title ) ? $title : null ); ?></title>
   <link href="assets/css/style.css" rel="stylesheet" media="screen">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -13,10 +13,10 @@
   <header>
     <div class="site-header">
       <div class="site-title">
-        <a href="<?php echo SITE_HOME_URL; ?>"><img src="assets/images/logo.png" alt="logo"></a>
+        <a href="<?php echo $config['site']['home_url']; ?>"><img src="assets/images/logo.png" alt="logo"></a>
       </div>
       <div class="site-login">
-        <?php include PARTIAL_PATH . 'login.php'; ?>
+        <?php include $config['path']['partial'] . 'login.php'; ?>
       </div>
     </div>
 
