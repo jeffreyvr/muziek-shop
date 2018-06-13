@@ -13,7 +13,7 @@
   <header>
     <div class="site-header">
       <div class="site-title">
-        <img src="assets/images/logo.png" alt="logo">
+        <a href="<?php echo SITE_HOME_URL; ?>"><img src="assets/images/logo.png" alt="logo"></a>
       </div>
       <div class="site-login">
         <?php include PARTIAL_PATH . 'login.php'; ?>

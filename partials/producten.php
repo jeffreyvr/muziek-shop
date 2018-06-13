@@ -1,7 +1,21 @@
 <!-- Start Producten -->
 <div class="flex-grid products">
 
-  <?php foreach( han_get_producten() as $product ) { ?>
+  <?php
+    $arguments = [];
+
+    if ( !empty( $_GET['category'] ) ) {
+      $arguments['category'] = $_GET['category'];
+    }
+
+    if ( !empty( $_GET['search'] ) ) {
+      $arguments['search'] = $_GET['search'];
+    }
+
+    $producten = han_get_producten( $arguments );
+  ?>
+
+  <?php foreach( $producten as $product ) { ?>
 
     <!-- Start Product <?php echo $product['PRODUCTNUMMER']; ?> -->
     <article class="col product-item">

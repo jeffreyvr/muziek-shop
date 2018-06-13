@@ -22,56 +22,57 @@
 
   <form method="post">
 
-    <button type="submit">Winkelwagen bijwerken</button>
-
     <input type="hidden" name="form_action" value="winkelwagen_bijwerken">
 
-    <table class="cart">
-      <tr>
-        <th>Afbeelding</th>
-        <th>Productnaam</th>
-        <th>Prijs</th>
-        <th>Aantal</th>
-        <th>Subtotaal</th>
-        <th>Verwijderen</th>
-      </tr>
+    <div class="shopping-cart">
 
-    <?php foreach ( $winkelwagen as $productnummer => $item ) {
-      $product = han_get_product_by_productnummer( $productnummer ); ?>
+      <div class="shopping-cart-actions">
+        <div class="cart-edit">
+          <button type="submit" class="button-grey">Winkelwagen bijwerken</button>
+        </div>
 
-      <tr>
-        <td><img src="<?php echo $product['AFBEELDING_GROOT']; ?>" alt="Afbeelding <?php echo $product['PRODUCTNAAM']; ?>"></td>
-        <td>
-          <a href="index.php?page=product&amp;productnummer=<?php echo $product['PRODUCTNUMMER']; ?>">
+        <div class="cart-continue">
+          <?php if ( han_is_gebruiker_logged_in() ) { ?>
+            <a href="index.php?page=afrekenen" class="button">Afrekenen</a>
+          <?php } else { ?>
+            <a href="index.php?page=registreren&amp;redirect_to=index.php?page=winkelwagen" class="button">Registreren &raquo;</a>
+          <?php } ?>
+        </div>
+      </div>
+
+      <?php foreach ( $winkelwagen as $productnummer => $item ) {
+        $product = han_get_product_by_productnummer( $productnummer ); ?>
+
+      <div class="item">
+        <div class="image">
+          <img src="<?php echo $product['AFBEELDING_GROOT']; ?>" alt="Afbeelding <?php echo $product['PRODUCTNAAM']; ?>">
+        </div>
+
+        <div class="description">
+          <span><a href="index.php?page=product&amp;productnummer=<?php echo $product['PRODUCTNUMMER']; ?>">
             <?php echo $product['PRODUCTNAAM']; ?>
-          </a>
-        </td>
-        <td><?php echo han_format_price( $product['PRIJS'] ); ?></td>
-        <td>
-          <input type="number" name="product[<?php echo $productnummer; ?>]" min="1" value="<?php echo $item['aantal']; ?>">
-        </td>
-        <td><?php echo han_format_price( $product['PRIJS'] * $item['aantal'] ); ?></td>
-        <td><button type="submit" name="delete" value="<?php echo $productnummer; ?>">Verwijderen</button></td>
-      </tr>
+          </a></span>
+        </div>
 
-    <?php } ?>
+        <div class="quantity">
+          <label>Aantal:</label><input type="number" name="product[<?php echo $productnummer; ?>]" min="1" value="<?php echo $item['aantal']; ?>">
+        </div>
 
-      <tr>
-        <td class="total" colspan="6">
-          <strong>Eindtotaal:</strong>
-          <?php echo han_format_price( han_get_winkelwagen_totaal() ); ?>
-        </td>
-      </tr>
+        <div class="total-price">
+          <span>Per stuk:<br><?php echo han_format_price( $product['PRIJS'] ); ?></span>
 
-    </table>
+          <?php if ( $item['aantal'] > 1 ) { ?>
+            <span>Subtotaal:<br> <?php echo han_format_price( $product['PRIJS'] * $item['aantal'] ); ?></span>
+          <?php } ?>
+        </div>
 
-    <button type="submit">Winkelwagen bijwerken</button>
+        <div class="delete">
+          <button type="submit" name="delete" class="button-grey" value="<?php echo $productnummer; ?>">Verwijderen</button>
+        </div>
+      </div>
+      <?php } ?>
 
-    <?php if ( han_is_gebruiker_logged_in() ) { ?>
-      <a href="index.php?page=afrekenen" class="button">Afrekenen</a>
-    <?php } else { ?>
-      <a href="index.php?page=registreren&amp;redirect_to=index.php?page=winkelwagen" class="button">Registreren</a>
-    <?php } ?>
+    </div>
 
   </form>
 <?php } ?>

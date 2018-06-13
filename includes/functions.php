@@ -10,9 +10,11 @@
 function han_error_screen( $message, $title = '' ) {
   include PARTIAL_PATH . 'header.php';
 
-  echo '<div class="message message-error">';
-    echo ( ! empty( $title ) ? '<strong>' . $title . '</strong>' : null );
-    echo $message;
+  echo '<div class="container">';
+    echo '<div class="message message-error">';
+      echo ( ! empty( $title ) ? '<strong>' . $title . '</strong>' : null );
+      echo $message;
+    echo '</div>';
   echo '</div>';
 
   include PARTIAL_PATH . 'footer.php';
@@ -76,7 +78,7 @@ function han_get_gebruiker_by_gebruikersnaam($gebruikersnaam) {
  */
 function han_do_login() {
   if ( empty( $_POST['gebruikersnaam'] ) || empty( $_POST['wachtwoord'] ) ) {
-    han_error_screen( 'Er zijn geen inloggegevens ingevuld', 'Fout bij inloggen' );
+    han_error_screen( 'Er zijn geen inloggegevens ingevuld.', 'Fout bij inloggen' );
   }
 
   $gebruiker = han_get_gebruiker_by_gebruikersnaam( $_POST['gebruikersnaam'] );
@@ -84,7 +86,7 @@ function han_do_login() {
   if ( $gebruiker['WACHTWOORD'] == $_POST['wachtwoord'] ) {
     $_SESSION['gebruikersnaam'] = $_POST['gebruikersnaam'];
   } else {
-    han_error_screen( 'Foutief wachtwoord', 'Fout bij inloggen' );
+    han_error_screen( 'Je hebt een foute gebruikersnaam en/of wachtwoord ingevoerd.', 'Fout bij inloggen' );
   }
 }
 
@@ -103,7 +105,6 @@ function han_do_winkelwagen() {
   }
 
   header("location: index.php?page=winkelwagen&message=1");
-  exit;
 }
 
 /**
@@ -172,16 +173,53 @@ function han_do_logout() {
 }
 
 /**
- * Get producten
+ * Get Producten
+ *
+ * Haal producten eventueel op basis van argumenten als search, category, offset en limit.
+ *
+ * @param  array $custom_arguments
  *
  * @return array
  */
-function han_get_producten() {
+function han_get_producten( $custom_arguments = array() ) {
   global $db;
+
+  $arguments = [ 'offset' => 0, 'limit' => 12 ];
+
+  if ( !empty( $custom_arguments ) ) {
+    $arguments = array_merge( $arguments, $custom_arguments );
+  }
 
   $statement = "SELECT * FROM PRODUCT";
 
-  $query = $db->query( $statement );
+  $wheres = [];
+
+  if ( ! empty( $arguments['category'] ) ) {
+    $wheres[] = "CATEGORIE = :category";
+  }
+
+  if ( ! empty( $arguments['search'] ) ) {
+    $arguments['search'] = "%{$arguments['search']}%";
+    $wheres[] = "PRODUCTNAAM LIKE :search";
+  }
+
+  foreach ( $wheres as $i => $where ) {
+    if ( $i == 0 ) {
+      $statement .= " WHERE";
+    }
+
+    if ( $i > 0 ) {
+      $statement .= " AND";
+    }
+
+    $statement .= " {$where}";
+  }
+
+  $statement .= " LIMIT :offset, :limit ";
+
+  $query = $db->prepare( $statement );
+
+  $query->execute( $arguments );
 
   return $query->fetchAll();
 }
@@ -219,7 +257,7 @@ function han_do_registreren() {
   global $db, $error;
 
   foreach ( $_POST as $post => $value ) {
-    if ( empty( $value ) && $post !== 'tussenvoegsel' ) {
+    if ( empty( $value ) && ( $post == 'tussenvoegsel' || $post == 'redirect_to' ) == false ) {
       $error[$post] = 'leeg';
     }
   }
@@ -240,7 +278,14 @@ function han_do_registreren() {
     $query->bindParam(':sexe', $_POST['aanhef']);
     $query->bindParam(':wachtwoord', $_POST['wachtwoord']);
 
-    $query->execute();
+    try {
+      $query->execute();
+
+      $_SESSION['gebruikersnaam'] = $_POST['gebruikersnaam']; // log gebruiker in na registratie
+
+    } catch(Exception $e) {
+      han_error_screen( "Er ging iets mis met het registreren.<br>{$e->getMessage()}", 'Fout bij registreren' );
+    }
 
     if ( isset( $_POST['redirect_to'] ) ){
 
@@ -249,7 +294,36 @@ function han_do_registreren() {
       } else {
         header("location: index.php");
       }
-      exit;
     }
   }
 }
+
+/**
+ * Get categories
+ *
+ * @return array
+ */
+function han_get_categories() {
+  global $db;
+
+  $query = $db->query('SELECT * FROM CATEGORIE');
+
+  return $query->fetchAll();
+}
+
+/**
+ * Get related products
+ *
+ * @return array
+ */
+ function han_get_related_products( $productnummer ) {
+   global $db;
+
+   $query = $db->prepare( "SELECT PRODUCT.* FROM PRODUCT_GERELATEERD_PRODUCT
+    INNER JOIN PRODUCT ON PRODUCT_GERELATEERD_PRODUCT.PRODUCTNUMMER_GERELATEERD_PRODUCT=PRODUCT.PRODUCTNUMMER
+    WHERE PRODUCT_GERELATEERD_PRODUCT.PRODUCTNUMMER = :productnummer" );
+
+   $query->execute( [ 'productnummer' => $productnummer ] );
+
+   return $query->fetchAll();
+ }
