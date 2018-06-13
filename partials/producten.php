@@ -15,16 +15,24 @@
     $producten = han_get_producten( $arguments );
   ?>
 
-  <?php foreach( $producten as $product ) { ?>
+  <?php if ( !empty( $producten ) ) { ?>
 
-    <!-- Start Product <?php echo $product['PRODUCTNUMMER']; ?> -->
-    <article class="col product-item">
-      <a href="index.php?page=product&amp;productnummer=<?php echo $product['PRODUCTNUMMER']; ?>"></a>
-      <img src="<?php echo $product['AFBEELDING_KLEIN']; ?>" alt="<?php echo $product['PRODUCTNAAM']; ?>">
-      <h3><?php echo $product['PRODUCTNAAM']; ?></h3>
-      <strong class="price"><?php echo han_format_price( $product['PRIJS'] ); ?></strong>
-    </article>
-    <!-- Eind Product <?php echo $product['PRODUCTNUMMER']; ?> -->
+    <?php foreach( $producten as $product ) { ?>
+
+      <!-- Start Product <?php echo $product['PRODUCTNUMMER']; ?> -->
+      <article class="col product-item">
+        <a href="index.php?page=product&amp;productnummer=<?php echo $product['PRODUCTNUMMER']; ?>"></a>
+        <img src="<?php echo $product['AFBEELDING_KLEIN']; ?>" alt="<?php echo $product['PRODUCTNAAM']; ?>">
+        <h3><?php echo $product['PRODUCTNAAM']; ?></h3>
+        <strong class="price"><?php echo han_format_price( $product['PRIJS'] ); ?></strong>
+      </article>
+      <!-- Eind Product <?php echo $product['PRODUCTNUMMER']; ?> -->
+
+    <?php } ?>
+
+  <?php } else { ?>
+    
+    <p>Geen producten gevonden.</p>
 
   <?php } ?>
 
