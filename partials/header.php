@@ -16,7 +16,7 @@
         <a href="<?php echo $config['site']['home_url']; ?>"><img src="assets/images/logo.png" alt="logo"></a>
       </div>
       <div class="site-login">
-        <?php include $config['path']['partial'] . 'login.php'; ?>
+        <?php include $config['paths']['partial'] . 'login.php'; ?>
       </div>
     </div>
 

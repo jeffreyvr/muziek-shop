@@ -8,7 +8,9 @@
 
 body{
   box-sizing: border-box;
-  -webkit-font-smoothing: antialiased; /* voor font smoothing */
+  /* voor font smoothing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 pre {
