@@ -1,7 +1,4 @@
 <?php
-include 'tijdelijk/simple_html_dom.php';
-
-
 require_once( 'includes/setup.php' );
 
 // Simple page routing
