@@ -11,11 +11,12 @@ $config = [
   ],
   'site' => [
     'name' => 'Muziekshop',
-    'home_url' => 'http://127.0.0.1/han/'
+    'home_url' => 'http://127.0.0.1/han/',
+    'items_per_page' => 12
   ],
   'paths' => [
     'partial' => dirname(__FILE__) . '/../partials/'
-  ]
+  ],
 ];
 
 require_once 'database.php';

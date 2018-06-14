@@ -183,7 +183,7 @@ function han_do_logout() {
  *
  * @return array
  */
-function han_get_producten( $custom_arguments = array() ) {
+function han_get_producten( $custom_arguments = array(), $return_total = false ) {
   global $db;
 
   $arguments = [ 'offset' => 0, 'limit' => 12 ];
@@ -192,7 +192,13 @@ function han_get_producten( $custom_arguments = array() ) {
     $arguments = array_merge( $arguments, $custom_arguments );
   }
 
-  $statement = "SELECT * FROM PRODUCT";
+  $statement = '';
+
+  if ( $return_total ) {
+    $statement .= "SELECT COUNT(PRODUCT.PRODUCTNUMMER) as total FROM PRODUCT";
+  } else {
+    $statement .= "SELECT * FROM PRODUCT";
+  }
 
   $wheres = [];
 
@@ -222,6 +228,10 @@ function han_get_producten( $custom_arguments = array() ) {
   $query = $db->prepare( $statement );
 
   $query->execute( $arguments );
+
+  if ( $return_total ) {
+    return $query->fetch()['total'];
+  }
 
   return $query->fetchAll();
 }
@@ -346,4 +356,46 @@ function han_get_categories() {
  */
 function han_get_category_query() {
   return filter_input( INPUT_GET, 'category', FILTER_SANITIZE_STRING );
+}
+
+/**
+ * Get paged query
+ *
+ * @return string|null
+ */
+function han_get_paged_query() {
+  return filter_input( INPUT_GET, 'paged', FILTER_SANITIZE_STRING );
+}
+
+/**
+ * [han_get_product_pagination description]
+ * @return [type] [description]
+ */
+function han_get_product_pagination($total_result=0) {
+  global $config;
+
+  $paged = (han_get_paged_query()?han_get_paged_query():1);
+  $pages = ceil($total_result / $config['site']['items_per_page']);
+  $search = han_get_search_query();
+  $category = han_get_category_query();
+
+  $output = '';
+
+  if ( $pages == 0 ) return;
+
+  $output .= '<div class="pagination">';
+
+  if ( $paged > 1 ) {
+    $output .= '<a href="index.php?paged=' . ($paged-1) . '&amp;search='.$search.'&amp;category='.$category.'" class="button button-prev">&laquo; Vorige</a>';
+  }
+
+  $output .= "Pagina {$paged} van {$pages}";
+
+  if ( $paged < $pages  ) {
+    $output .= '<a href="index.php?paged=' . ($paged+1) . '&amp;search='.$search.'&amp;category='.$category.'" class="button button-next">Volgende &raquo;</a>';
+  }
+
+  $output .= '</div>';
+
+  return $output;
 }

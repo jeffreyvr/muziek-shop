@@ -2,14 +2,23 @@
   $arguments = [];
 
   if ( !empty( $_GET['category'] ) ) {
-    $arguments['category'] = $_GET['category'];
+    $arguments['category'] = han_get_category_query();
   }
 
   if ( han_get_search_query() ) {
     $arguments['search'] = han_get_search_query();
   }
 
+  if ( $paged = han_get_paged_query() ) {
+    $offset = $config['site']['items_per_page'] * ($paged-1);
+    $arguments['offset'] = $offset;
+  }
+
   $producten = han_get_producten( $arguments );
+
+  $page_arguments = array_merge( $arguments, ['offset'=>0,'limit'=>999 ] );
+
+  $total = han_get_producten( $page_arguments, true );
 ?>
 
 <?php if ( han_get_search_query() ) { ?>
@@ -35,6 +44,8 @@
       <!-- Eind Product <?php echo $product['PRODUCTNUMMER']; ?> -->
 
     <?php } ?>
+
+    <?php echo han_get_product_pagination($total); ?>
 
   <?php } else { ?>
 
