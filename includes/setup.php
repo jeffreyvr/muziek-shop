@@ -1,5 +1,5 @@
 <?php
-session_start(); // voor winkelwagen
+session_start();
 
 $config = [
   'db' => [
