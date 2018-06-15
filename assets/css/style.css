@@ -226,7 +226,7 @@ input, textarea, select {
 }
 
 .search-form input {
-  max-width: 160px;
+  max-width: 140px;
 }
 
 select {
@@ -357,6 +357,13 @@ button:hover, .button:hover {
 
 .shopping-cart .item .delete {
   text-align: right;
+}
+
+.shopping-cart .cart-total {
+  display: block;
+  padding: 8px 15px;
+  text-align: right;
+  margin-bottom: 15px;
 }
 
 .shopping-cart-actions {

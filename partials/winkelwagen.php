@@ -1,5 +1,5 @@
 <?php
-  $winkelwagen = han_get_winkelwagen();
+  $winkelwagen = han_get_cart();
 ?>
 
 <h1>Winkelwagen</h1>
@@ -22,7 +22,7 @@
 
   <form method="post">
 
-    <input type="hidden" name="form_action" value="winkelwagen_bijwerken">
+    <input type="hidden" name="form_action" value="update_cart">
 
     <div class="shopping-cart">
 
@@ -71,6 +71,8 @@
         </div>
       </div>
       <?php } ?>
+
+      <div class="cart-total"><strong>Totaal:</strong> <?php echo han_format_price( han_get_cart_total() ); ?></div>
 
     </div>
 

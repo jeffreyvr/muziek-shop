@@ -36,7 +36,7 @@ function han_formhandeler() {
 
   if( empty( $_POST['form_action'] ) ) return; // controleer of form_action een waarde heeft
 
-  $form_actions = array( 'login', 'logout', 'winkelwagen', 'winkelwagen_bijwerken', 'registreren' ); // mogelijke actions
+  $form_actions = array( 'login', 'logout', 'cart', 'update_cart', 'register', 'complete_order' ); // mogelijke actions
 
   if ( in_array( $_POST['form_action'], $form_actions ) ) {
     call_user_func( 'han_do_' . $_POST['form_action'] );
@@ -95,15 +95,15 @@ function han_do_login() {
 /**
  * Do winkelwagen
  */
-function han_do_winkelwagen() {
+function han_do_cart() {
   if ( empty( $_POST['productnummer'] ) ) {
     han_error_screen( 'Er is geen productnummer bekend', 'Fout bij inloggen' );
   }
 
-  if ( !empty( $_SESSION['winkelwagen'][$_POST['productnummer']] ) ) {
-    $_SESSION['winkelwagen'][$_POST['productnummer']]['aantal']++;
+  if ( !empty( $_SESSION['cart'][$_POST['productnummer']] ) ) {
+    $_SESSION['cart'][$_POST['productnummer']]['aantal']++;
   } else {
-    $_SESSION['winkelwagen'][$_POST['productnummer']]['aantal'] = 1;
+    $_SESSION['cart'][$_POST['productnummer']]['aantal'] = 1;
   }
 
   header("location: index.php?page=winkelwagen&message=1");
@@ -112,15 +112,15 @@ function han_do_winkelwagen() {
 /**
  * Do winkelwagen bijwerken
  */
-function han_do_winkelwagen_bijwerken() {
+function han_do_update_cart() {
   $producten = $_POST['product'];
 
   foreach ( $producten as $productnummer => $aantal ) {
-    $_SESSION['winkelwagen'][$productnummer]['aantal'] = $aantal;
+    $_SESSION['cart'][$productnummer]['aantal'] = $aantal;
   }
 
   if ( isset( $_POST['delete'] ) ) {
-    unset( $_SESSION['winkelwagen'][$_POST['delete']] );
+    unset( $_SESSION['cart'][$_POST['delete']] );
   }
 
   header("location: index.php?page=winkelwagen");
@@ -132,8 +132,8 @@ function han_do_winkelwagen_bijwerken() {
  *
  * @return array|null
  */
-function han_get_winkelwagen() {
-  return ( !empty( $_SESSION['winkelwagen'] ) ? $_SESSION['winkelwagen'] : null );
+function han_get_cart() {
+  return ( !empty( $_SESSION['cart'] ) ? $_SESSION['cart'] : null );
 }
 
 /**
@@ -141,8 +141,8 @@ function han_get_winkelwagen() {
  *
  * @return int|null
  */
-function han_get_winkelwagen_totaal() {
-  $winkelwagen = han_get_winkelwagen();
+function han_get_cart_total() {
+  $winkelwagen = han_get_cart();
 
   if ( empty( $winkelwagen ) ) return;
 
@@ -203,6 +203,7 @@ function han_get_producten( $custom_arguments = array(), $return_total = false )
   $wheres = [];
 
   if ( ! empty( $arguments['category'] ) ) {
+    $arguments['category'] = str_replace( '&#39;',"'", $arguments['category'] );
     $wheres[] = "CATEGORIE = :category";
   }
 
@@ -265,7 +266,7 @@ function han_get_product_by_productnummer( $productnummer ) {
 /**
  * Registreren
  */
-function han_do_registreren() {
+function han_do_register() {
   global $db, $error;
 
   foreach ( $_POST as $post => $value ) {
@@ -368,15 +369,16 @@ function han_get_paged_query() {
 }
 
 /**
- * [han_get_product_pagination description]
- * @return [type] [description]
+ * Get producten pagination
+ *
+ * @return array
  */
 function han_get_product_pagination($total_result=0) {
   global $config;
 
-  $paged = (han_get_paged_query()?han_get_paged_query():1);
-  $pages = ceil($total_result / $config['site']['items_per_page']);
-  $search = han_get_search_query();
+  $paged    = (han_get_paged_query()?han_get_paged_query():1);
+  $pages    = ceil($total_result / $config['site']['items_per_page']);
+  $search   = han_get_search_query();
   $category = han_get_category_query();
 
   $output = '';
@@ -398,4 +400,39 @@ function han_get_product_pagination($total_result=0) {
   $output .= '</div>';
 
   return $output;
+}
+
+/**
+ * Update product voorraad
+ *
+ * @param  int $productnummer
+ * @param  int $aantal
+ */
+function han_update_product_voorraad( $productnummer, $aantal ) {
+  global $db;
+
+  $product = han_get_product_by_productnummer( $productnummer );
+
+  $voorraad = ($product['VOORRAAD'] - $aantal);
+
+  $query = $db->prepare( "UPDATE PRODUCT SET VOORRAAD = :voorraad WHERE PRODUCTNUMMER = :productnummer" );
+
+  $query->execute( [ 'productnummer' => $productnummer, 'voorraad' => $voorraad ] );
+}
+
+/**
+ * Complete order
+ */
+function han_do_complete_order() {
+  $winkelwagen = han_get_cart();
+
+  foreach ( $winkelwagen as $productnummer => $item ) {
+    han_update_product_voorraad( $productnummer, $item['aantal'] );
+  }
+
+  unset( $_SESSION['cart'] );
+
+  header("location: index.php");
+
+  exit;
 }

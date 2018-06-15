@@ -6,7 +6,7 @@
     <ul>
       <?php foreach ( $categorieen as $categorie ) { ?>
 
-        <li><a href="index.php?category=<?php echo $categorie['CATEGORIENAAM']; ?>"><?php echo $categorie['CATEGORIENAAM']; ?></a></li>
+        <li><a href="index.php?category=<?php echo $categorie['CATEGORIENAAM']; ?>"><?php echo ucfirst( $categorie['CATEGORIENAAM'] ); ?></a></li>
 
       <?php } ?>
     </ul>

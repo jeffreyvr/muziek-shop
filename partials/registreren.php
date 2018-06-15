@@ -29,7 +29,7 @@
 
   <h2>Accountgegevens</h2>
 
-  <input type="hidden" name="form_action" value="registreren">
+  <input type="hidden" name="form_action" value="register">
 
   <div class="form-group">
     <label for="gebruikersnaam">Gebruikersnaam*:</label>

@@ -24,11 +24,14 @@
       <?php echo han_format_price( $product['PRIJS'] ); ?>
     </p>
 
+    <?php if ( $product['VOORRAAD'] >= 1 ) { ?>
     <form method="post">
       <input type="hidden" name="productnummer" value="<?php echo $product['PRODUCTNUMMER']; ?>">
       <button type="submit">Toevoegen aan winkelwagen</button>
-      <input type="hidden" name="form_action" value="winkelwagen">
+      <input type="hidden" name="form_action" value="cart">
     </form>
+    <?php } ?>
+
   </div>
 </article>
 

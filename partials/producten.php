@@ -24,7 +24,7 @@
 <?php if ( han_get_search_query() ) { ?>
   <h1>Zoekresultaten voor "<?php echo han_get_search_query(); ?>"</h1>
 <?php } elseif ( han_get_category_query() ) { ?>
-  <h1>Categorie: <?php echo han_get_category_query(); ?></h1>
+  <h1>Categorie: <?php echo ucfirst( han_get_category_query() ); ?></h1>
 <?php } ?>
 
 <!-- Start Producten -->
