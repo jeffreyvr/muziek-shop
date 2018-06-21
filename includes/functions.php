@@ -107,6 +107,7 @@ function han_do_cart() {
   }
 
   header("location: index.php?page=winkelwagen&message=1");
+  exit;
 }
 
 /**
@@ -307,6 +308,7 @@ function han_do_register() {
       } else {
         header("location: index.php");
       }
+      exit;
     }
   }
 }
