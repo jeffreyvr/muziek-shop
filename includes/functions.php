@@ -114,7 +114,7 @@ function han_do_cart() {
  * Do winkelwagen bijwerken
  */
 function han_do_update_cart() {
-  $producten = $_POST['product'];
+  $producten = ( !empty ( $_POST['product'] ) && is_array( $_POST['product'] ) ? $_POST['product'] : [] );
 
   foreach ( $producten as $productnummer => $aantal ) {
     $_SESSION['cart'][$productnummer]['aantal'] = $aantal;
