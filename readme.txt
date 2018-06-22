@@ -2,7 +2,7 @@ README voor HAN Shop
 BP van Jurrian te Loo, Jeffrey van Rossum
 
 >> Online versie: https://vanrossumwebontwikkeling.nl/han/
-
+>> GitHub repository: https://github.com/jeffreyvr/muziek-shop
 ===================================================
 
 # SETUP #
